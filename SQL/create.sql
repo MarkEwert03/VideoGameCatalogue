@@ -2,7 +2,7 @@ CREATE TABLE User (
     user_id INTEGER PRIMARY KEY,
     user_name TEXT NOT NULL,
     age INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP
 );
 
 CREATE TABLE Catalogue (
@@ -18,7 +18,7 @@ CREATE TABLE Game (
     title TEXT NOT NULL,
     console TEXT NOT NULL,
     genre TEXT NOT NULL,
-    release_date DATE,
+    release_date DATE
 );
 
 CREATE TABLE CatalogueGame (
@@ -30,3 +30,5 @@ CREATE TABLE CatalogueGame (
     FOREIGN KEY (cat_id) REFERENCES Catalogue(cat_id),
     FOREIGN KEY (game_id) REFERENCES Game(game_id)
 );
+
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(01, "Mark", 21, "2024-06-28 20:30:00");

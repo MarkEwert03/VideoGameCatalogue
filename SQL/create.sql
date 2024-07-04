@@ -32,3 +32,4 @@ CREATE TABLE CatalogueGame (
 );
 
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(01, "Mark", 21, "2024-06-28 20:30:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(02, "Timmy", 8, "2024-07-02 17:00:00");

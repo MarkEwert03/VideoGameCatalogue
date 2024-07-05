@@ -3,12 +3,12 @@ from selectRequest import selectRequest
 
 app = Flask(__name__)
 
-
+# Route to main HTML page
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
+# Route to handle select request
 @app.route('/select', methods=['POST'])
 def selectEndpoints():
     queryResults = selectRequest()

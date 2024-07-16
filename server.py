@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import json
 from selectRequest import selectRequest
 
 app = Flask(__name__)
@@ -11,7 +12,8 @@ def index():
 # Route to handle select request
 @app.route('/select', methods=['POST'])
 def selectEndpoints():
-    queryResults = selectRequest()
+    dataDict = json.loads(request.data)
+    queryResults = selectRequest(dataDict)
     return queryResults
 
 

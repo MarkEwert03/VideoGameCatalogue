@@ -5,10 +5,14 @@ function main() {
 }
 
 function getUsers() {
+    var param_age = document.querySelector('select[name="ageRange"]').value;
+    var param_dict = { param_age: param_age };
+
     // Use fetch to send a POST request to the server
     fetch('/select', {
         method: 'POST',
-        headers: { 'Content-Type': 'applications/json' }
+        headers: { 'Content-Type': 'applications/json' },
+        body: JSON.stringify(param_dict)
     })
         .then(response => response.json())
         .then(data => populateTable(document.getElementById('userTable'), data))

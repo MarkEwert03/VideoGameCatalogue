@@ -52,9 +52,13 @@ INSERT INTO User(user_id, user_name, age, created_at) VALUES(17, "Quincy", 75, "
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(18, "Rachel", 86, "2016-08-03 18:00:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(19, "Steve", 93, "2015-11-09 07:25:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(20, "Tina", 9, "2023-05-11 12:00:00");
-INSERT INTO User(user_id, user_name, age, created_at) VALUES(21, "Uma", 12, "2023-07-23 14:45:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(21, "Uma", 14, "2023-07-23 14:45:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(22, "Victor", 28, "2022-09-15 17:20:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(23, "Wendy", 32, "2021-06-27 10:30:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(24, "Xander", 48, "2020-04-18 09:05:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(25, "Yara", 55, "2019-10-02 11:55:00");
 INSERT INTO User(user_id, user_name, age, created_at) VALUES(26, "Zack", 60, "2018-01-29 08:50:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(27, "Blinky", 45, "2007-07-01 09:10:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(28, "Pinky", 49, "2008-08-02 10:35:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(29, "Inky", 56, "2009-09-03 14:15:00");
+INSERT INTO User(user_id, user_name, age, created_at) VALUES(30, "Clyde", 61, "2010-10-04 17:40:00");

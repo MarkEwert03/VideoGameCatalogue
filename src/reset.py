@@ -2,8 +2,8 @@ import sqlite3
 import os
 
 DB_PATH = os.path.realpath('../vgcat.db')
-CREATE_PATH = 'SQL/create.sql'
-DELETE_PATH = 'SQL/delete.sql'
+CREATE_PATH = os.path.realpath('SQL/create.sql')
+DELETE_PATH = os.path.realpath('SQL/delete.sql')
 
 
 def main():

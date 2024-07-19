@@ -9,7 +9,9 @@ This is a personal side project I made to track a catalogue of video games and v
 	- Flask (```pip install flask```)
 	- Sqlite3 (```pip install sqlite3```)
 
-2. Run the python file: server.py (```> python3 server.py```)
+2. Run the program (```> ./run```)
+	- If `vgcat.db` does not exist then run (```> ./reset```)
+	- This is equivilent to running the python file server.py (```> python3 server.py```)
 
 3. Click on the link that appears on the terminal screen
 

@@ -1,5 +1,7 @@
 import sqlite3
+import os
 
+DB_PATH = os.path.realpath('../vgcat.db')
 
 def selectRequest(jdict):
     sqlQuery = "SELECT * FROM User"
@@ -23,13 +25,14 @@ def selectRequest(jdict):
 
 # Returns a list of dictionaries with all the rows from the sql query
 def getTuplesFromDataBase(sqlQuery: str):
-    dbConnection = sqlite3.connect("vgcat.db")
-    dbConnection.row_factory = sqlite3.Row
-    cursor = dbConnection.cursor()
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    
+    cursor = conn.cursor()
     cursor.execute(sqlQuery)
     tuples = cursor.fetchall()
 
     result_list = [dict(tup) for tup in tuples]
 
-    dbConnection.close()
+    conn.close()
     return result_list

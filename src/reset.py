@@ -1,6 +1,7 @@
 import sqlite3
+import os
 
-DB_PATH = 'vgcat.db'
+DB_PATH = os.path.realpath('../vgcat.db')
 CREATE_PATH = 'SQL/create.sql'
 DELETE_PATH = 'SQL/delete.sql'
 
@@ -23,7 +24,7 @@ def main():
             # Execute the SQL create script
             create_script = create_file.read()
             cursor.executescript(create_script)
-            
+
         conn.commit()
         print("Video game catalogue database created successfully as vgcat.db")
 

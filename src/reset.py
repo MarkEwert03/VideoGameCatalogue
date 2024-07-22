@@ -1,12 +1,15 @@
-import sqlite3
 import os
+import sqlite3
 
-DB_PATH = os.path.realpath('../vgcat.db')
-CREATE_PATH = os.path.realpath('SQL/create.sql')
-DELETE_PATH = os.path.realpath('SQL/delete.sql')
+CURR_PATH = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.join(CURR_PATH, ".."))
+DB_PATH = 'vgcat.db'
+CREATE_PATH = 'SQL/create.sql'
+DELETE_PATH = 'SQL/delete.sql'
 
 
 def main():
+    conn = None
     try:
         # Connect to the database
         conn = sqlite3.connect(DB_PATH)

@@ -1,7 +1,9 @@
-import sqlite3
 import os
+import sqlite3
 
-DB_PATH = os.path.realpath('../vgcat.db')
+CURR_PATH = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.join(CURR_PATH, ".."))
+DB_PATH = 'vgcat.db'
 
 
 def selectRequest(jdict: dict) -> list[dict]:

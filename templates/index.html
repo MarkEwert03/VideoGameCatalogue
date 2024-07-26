@@ -12,26 +12,28 @@
         <h1> Video Game Catalogue </h1>
     </div>
 
-    <div id="selection">
-        <h2> Manage Users </h2>
-
-        <!-- dropdown for age ranges -->
-        <select name="ageRange">
-            <option value="all"> All ages </option>
-            <option value="9"> 0-9 years old </option>
-            <option value="19"> 10-19 years old </option>
-            <option value="29"> 20-29 years old </option>
-            <option value="39"> 30-39 years old </option>
-            <option value="49"> 40-49 years old </option>
-            <option value="59"> 50-59 years old </option>
-            <option value="69"> 60-69 years old </option>
-            <option value="79"> 70-79 years old </option>
-            <option value="89"> 80-89 years old </option>
-            <option value="99"> 90-99 years old </option>
-            <option value="100+"> 100+ years old </option>
-        </select>
+    <div id="view">
+        <h2> View Users </h2>
 
         <div id="userSelect">
+            <!-- dropdown for age ranges -->
+            <select name="ageRange">
+                <option value="all"> All ages </option>
+                <option value="9"> 0-9 years old </option>
+                <option value="19"> 10-19 years old </option>
+                <option value="29"> 20-29 years old </option>
+                <option value="39"> 30-39 years old </option>
+                <option value="49"> 40-49 years old </option>
+                <option value="59"> 50-59 years old </option>
+                <option value="69"> 60-69 years old </option>
+                <option value="79"> 70-79 years old </option>
+                <option value="89"> 80-89 years old </option>
+                <option value="99"> 90-99 years old </option>
+                <option value="100+"> 100+ years old </option>
+            </select>
+
+            <br/>
+
             <!-- button to show table with current parameters -->
             <input type="button" id="selectSubmit" value="View Users" name="selectSubmit">
             <!-- button to clear table -->
@@ -48,7 +50,23 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
+    <div id="edit">
+        <h2> Edit User information </h2>
+
+        <div id="userEdit">
+            <!-- textbox to reference user ID -->
+            <input type="text" id="user_id" name="userID" placeholder="user id">
+            <br/>
+            <!-- textbox for new user name -->
+            <input type="text" id="user_name" name="userName" placeholder="name">
+            <br/>
+            <!-- textbox for new user age -->
+            <input type="text" id="user_age" name="userAge" placeholder="age">
+            <br/>
+            <input type="button" id="edit_submit" value="Confirm" name="editSubmit"></p>
+        </div>
     </div>
 </body>
 

@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Route to main HTML page
 @app.route('/')
-def index():
+def index(): 
     return render_template('index.html')
 
 # Route to handle select request

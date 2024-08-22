@@ -1,11 +1,13 @@
 function main() {
     // event listeners
-    document.getElementById('select_submit').addEventListener('click', getUsers);
+    document.getElementById('select_submit').addEventListener('click', selectUsers);
     document.getElementById('select_clear').addEventListener('click', clearUsers);
+    document.getElementById('update_submit').addEventListener('click', updateUsers);
+
 }
 
-function getUsers() {
-    var param_age = document.querySelector('select[name="ageRange"]').value;
+function selectUsers() {
+    var param_age = document.querySelector('select[name=ageRange]').value;
     var param_dict = { param_age: param_age };
 
     // Use fetch to send a POST request to the server
@@ -15,7 +17,7 @@ function getUsers() {
         body: JSON.stringify(param_dict)
     })
         .then(response => response.json())
-        .then(data => populateTable(document.getElementById('userTable'), data))
+        .then(data => populateTable(document.getElementById('user_table'), data))
 }
 
 // populate it with data, then show the table
@@ -46,10 +48,25 @@ function populateTable(tableElem, data) {
 }
 
 function clearUsers() {
-    var tableElem = document.getElementById('userTable');
+    var tableElem = document.getElementById('user_table');
     var tbody = tableElem.querySelector('tbody');
     tbody.innerHTML = ''; // clear any existing rows
     tableElem.style.display = 'none'; // hide the table
+}
+
+function updateUsers() {
+    param_user_id = document.querySelector('input[id=update_user_id]').value;
+    param_user_name = document.querySelector('input[name=userName]').value;
+    param_user_age = document.querySelector('input[name=userAge]').value;
+    param_dict = { user_id: parseInt(param_user_id), user_name: param_user_name, age: parseInt(param_user_age) }
+
+    // Use fetch to send a POST request to the server
+    fetch('/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'applications/json' },
+        body: JSON.stringify(param_dict)
+    })
+        .then(response => response.json())
 }
 
 document.addEventListener('DOMContentLoaded', function () { main(); })

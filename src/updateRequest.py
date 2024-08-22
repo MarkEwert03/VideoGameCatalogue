@@ -1,5 +1,5 @@
 import os
-from src.database import getTuplesFromDataBase
+from src.database import executeQuery
 
 CURR_PATH = os.path.dirname(os.path.abspath(__file__))
 os.chdir(os.path.join(CURR_PATH, ".."))
@@ -16,5 +16,5 @@ def updateRequest(json_query: dict):
     ref_id = json_query["user_id"]
     updated_name = json_query["user_name"]
     updated_age = json_query["age"]
-    sql_query = f"UPDATE User SET user_name = {updated_name}, age = {updated_age} WHERE user_id = {ref_id}"
-    return getTuplesFromDataBase(sql_query)
+    sql_query = f'UPDATE User SET user_name = "{updated_name}", age = {updated_age} WHERE user_id = {ref_id}'
+    return executeQuery(sql_query)

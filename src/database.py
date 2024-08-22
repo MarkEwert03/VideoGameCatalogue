@@ -18,3 +18,15 @@ def getTuplesFromDataBase(sql_query: str) -> list[dict]:
 
     conn.close()
     return result_list
+
+# excutes the sql query to the local database file
+def executeQuery(sql_query: str):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    
+    c = conn.cursor()
+    c.execute("PRAGMA foreign_keys = ON;")
+    c.execute(sql_query)
+    
+    conn.commit()
+    conn.close()

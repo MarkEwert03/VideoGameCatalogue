@@ -1,5 +1,5 @@
 import os
-from database import getTuplesFromDataBase
+from src.database import getTuplesFromDataBase
 
 CURR_PATH = os.path.dirname(os.path.abspath(__file__))
 os.chdir(os.path.join(CURR_PATH, ".."))

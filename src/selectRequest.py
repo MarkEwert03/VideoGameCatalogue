@@ -1,4 +1,4 @@
-from database import getTuplesFromDataBase
+from src.database import getTuplesFromDataBase
 
 
 def selectRequest(json_query: dict) -> list[dict]:

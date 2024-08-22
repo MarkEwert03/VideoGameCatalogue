@@ -15,7 +15,7 @@
     <div id="view">
         <h2> View Users </h2>
 
-        <div id="userSelect">
+        <div id="user_select">
             <!-- dropdown for age ranges -->
             <select name="ageRange">
                 <option value="all"> All ages </option>
@@ -35,9 +35,9 @@
             <br/>
 
             <!-- button to show table with current parameters -->
-            <input type="button" id="selectSubmit" value="View Users" name="selectSubmit">
+            <input type="button" id="select_submit" value="View Users" name="selectSubmit">
             <!-- button to clear table -->
-            <input type="button" id="selectClear" value="Clear Table" name="selectClear">
+            <input type="button" id="select_clear" value="Clear Table" name="selectClear">
             <!-- table showing user information -->
             <table id="userTable" style="display:none">
                 <thead>
@@ -55,7 +55,7 @@
     <div id="edit">
         <h2> Edit User information </h2>
 
-        <div id="userEdit">
+        <div id="user_update">
             <!-- textbox to reference user ID -->
             <input type="text" id="user_id" name="userID" placeholder="user id">
             <br/>
@@ -65,7 +65,8 @@
             <!-- textbox for new user age -->
             <input type="text" id="user_age" name="userAge" placeholder="age">
             <br/>
-            <input type="button" id="edit_submit" value="Confirm" name="editSubmit"></p>
+            <!-- button to confirm update -->
+            <input type="button" id="update_submit" value="Confirm" name="updateSubmit"></p>
         </div>
     </div>
 </body>

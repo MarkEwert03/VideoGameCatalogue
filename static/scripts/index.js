@@ -1,7 +1,7 @@
 function main() {
     // event listeners
-    document.getElementById('selectSubmit').addEventListener('click', getUsers);
-    document.getElementById('selectClear').addEventListener('click', clearUsers);
+    document.getElementById('select_submit').addEventListener('click', getUsers);
+    document.getElementById('select_clear').addEventListener('click', clearUsers);
 }
 
 function getUsers() {

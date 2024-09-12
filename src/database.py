@@ -20,13 +20,22 @@ def getTuplesFromDataBase(sql_query: str) -> list[dict]:
     return result_list
 
 # excutes the sql query to the local database file
+# returns "success" if succesful otherwise returns "error"
 def executeQuery(sql_query: str):
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    
-    c = conn.cursor()
-    c.execute("PRAGMA foreign_keys = ON;")
-    c.execute(sql_query)
-    
-    conn.commit()
-    conn.close()
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        
+        c = conn.cursor()
+        c.execute("PRAGMA foreign_keys = ON;")
+        # print(sql_query)
+        c.execute(sql_query)
+        conn.commit()
+        conn.close()
+        
+        if c.rowcount == 0:
+            raise ValueError("no rows were updated")
+        
+        return "success"
+    except:
+        return "error"

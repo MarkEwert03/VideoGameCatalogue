@@ -5,7 +5,8 @@ CURR_PATH = os.path.dirname(os.path.abspath(__file__))
 os.chdir(os.path.join(CURR_PATH, ".."))
 DB_PATH = 'vgcat.db'
 
-
+# executes query to update user with given information in json_query
+# returns "error" if there was an error in the query
 def updateRequest(json_query: dict):
     # json_query looks like
     # {

@@ -58,7 +58,7 @@ function updateUsers() {
     param_user_id = document.querySelector('input[id=update_user_id]').value;
     param_user_name = document.querySelector('input[name=userName]').value;
     param_user_age = document.querySelector('input[name=userAge]').value;
-    param_dict = { user_id: parseInt(param_user_id), user_name: param_user_name, age: parseInt(param_user_age) }
+    param_dict = { user_id: parseInt(param_user_id), user_name: param_user_name, age: parseInt(param_user_age) };
 
     // Use fetch to send a POST request to the server
     fetch('/update', {
@@ -67,6 +67,16 @@ function updateUsers() {
         body: JSON.stringify(param_dict)
     })
         .then(response => response.json())
+        .then(data => {
+            responseTextBox = document.getElementById("update_status");
+            if (data["update_status"] == "success") {
+                responseTextBox.innerHTML = `User ${param_user_id} now has been modified!`
+                responseTextBox.style.color = "green";
+            } else {
+                responseTextBox.innerHTML = `User ${param_user_id} does not exist`
+                responseTextBox.style.color = "red";
+            }
+        });
 }
 
 document.addEventListener('DOMContentLoaded', function () { main(); })

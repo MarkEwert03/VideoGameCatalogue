@@ -20,7 +20,7 @@ def validate_age(age_str: str) -> str:
         age_str (str): The age input provided as a string.
 
     Returns:
-        out (str): A message indicating either "valid" for a valid input, or a specific reason why the input is invalid.
+        out (str): A message in ["valid", "empty", "non-integer", "negative", "large"]
 
     Examples:
     >>> validate_age("25")
@@ -40,15 +40,14 @@ def validate_age(age_str: str) -> str:
     if not age_str.strip():
         return "empty"
 
-    # Check if the input is numeric and doesn't contain letters or symbols
-    if not age_str.isdigit():
-        return "non-numeric"
-
-    # Convert to integer now that we know it's all digits
-    age = int(age_str)
+    # Check if the input is a valid integer
+    try:
+        age = int(age_str)
+    except ValueError:
+        return "non-integer"
 
     # Check for non-negative number
-    if age < 0:
+    if age <= 0:
         return "negative"
 
     # Check for realistic age range (0 to 130 for human ages)
@@ -72,14 +71,13 @@ def updateRequest(json_query: dict):
     #     age: 25
     # }
     ref_id = json_query["user_id"]
-    
+
     updated_name = json_query["user_name"]
-    
+
     updated_age = json_query["age"]
     age_check = validate_age(updated_age)
     if age_check != "valid":
         return age_check
-    
-    
+
     sql_query = f'UPDATE User SET user_name = "{updated_name}", age = {updated_age} WHERE user_id = {ref_id}'
     return executeQuery(sql_query)

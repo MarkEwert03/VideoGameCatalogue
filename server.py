@@ -22,10 +22,8 @@ def selectEndpoint():
 def updateEndpoint():
     dataDict = json.loads(request.data)
     queryStatus = updateRequest(dataDict)
-    if queryStatus == "success":
-        return jsonify({"update_status": "success"})
-    else:
-        return jsonify({"update_status": "error"})
+    
+    return jsonify({"update_status": queryStatus})
 
 
 if __name__ == '__main__':

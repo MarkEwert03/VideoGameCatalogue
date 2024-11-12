@@ -5,26 +5,20 @@ from src.updateRequest import updateRequest
 
 app = Flask(__name__)
 
-# Route to main HTML page
 
-
-@app.route('/')
+@app.route('/')  # Route to main HTML page
 def index():
     return render_template('index.html')
 
-# Route to handle select request
 
-
-@app.route('/select', methods=['POST'])
+@app.route('/select', methods=['POST'])  # Route to handle select request
 def selectEndpoint():
     dataDict = json.loads(request.data)
     queryResults = selectRequest(dataDict)
     return queryResults
 
-# Route to handle update request
 
-
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['POST'])  # Route to handle update request
 def updateEndpoint():
     dataDict = json.loads(request.data)
     queryStatus = updateRequest(dataDict)

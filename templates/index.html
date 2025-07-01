@@ -2,75 +2,75 @@
 <html>
 
 <head>
-    <title>Video Game Catalogue</title>
-    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}">
+  <title>Video Game Catalogue</title>
+  <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}">
 </head>
 
 <body>
-    <div id="header">
-        <h1> Video Game Catalogue </h1>
+  <div id="header">
+    <h1> Video Game Catalogue </h1>
+  </div>
+
+  <div id="view">
+    <h2> View Users </h2>
+
+    <div id="user_select">
+      <!-- dropdown for age ranges -->
+      <select name="ageRange">
+        <option value="all"> All ages </option>
+        <option value="9"> 0-9 years old </option>
+        <option value="19"> 10-19 years old </option>
+        <option value="29"> 20-29 years old </option>
+        <option value="39"> 30-39 years old </option>
+        <option value="49"> 40-49 years old </option>
+        <option value="59"> 50-59 years old </option>
+        <option value="69"> 60-69 years old </option>
+        <option value="79"> 70-79 years old </option>
+        <option value="89"> 80-89 years old </option>
+        <option value="99"> 90-99 years old </option>
+        <option value="100+"> 100+ years old </option>
+      </select>
+
+      <br />
+
+      <!-- button to show table with current parameters -->
+      <input type="button" id="select_submit" value="View Users" name="selectSubmit">
+      <!-- button to clear table -->
+      <input type="button" id="select_clear" value="Clear Table" name="selectClear">
+      <!-- table showing user information -->
+      <table id="user_table" style="display:none">
+        <thead>
+          <th id="user_id">User ID</th>
+          <th id="user_name">Name</th>
+          <th id="age">Age (years)</th>
+          <th id="created_at">Date of Account Creation</th>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <div id="view">
-        <h2> View Users </h2>
+  <div id="edit">
+    <h2> Edit User information </h2>
 
-        <div id="user_select">
-            <!-- dropdown for age ranges -->
-            <select name="ageRange">
-                <option value="all"> All ages </option>
-                <option value="9"> 0-9 years old </option>
-                <option value="19"> 10-19 years old </option>
-                <option value="29"> 20-29 years old </option>
-                <option value="39"> 30-39 years old </option>
-                <option value="49"> 40-49 years old </option>
-                <option value="59"> 50-59 years old </option>
-                <option value="69"> 60-69 years old </option>
-                <option value="79"> 70-79 years old </option>
-                <option value="89"> 80-89 years old </option>
-                <option value="99"> 90-99 years old </option>
-                <option value="100+"> 100+ years old </option>
-            </select>
-
-            <br/>
-
-            <!-- button to show table with current parameters -->
-            <input type="button" id="select_submit" value="View Users" name="selectSubmit">
-            <!-- button to clear table -->
-            <input type="button" id="select_clear" value="Clear Table" name="selectClear">
-            <!-- table showing user information -->
-            <table id="user_table" style="display:none">
-                <thead>
-                    <th id="user_id">User ID</th>
-                    <th id="user_name">Name</th>
-                    <th id="age">Age (years)</th>
-                    <th id="created_at">Date of Account Creation</th>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+    <div id="user_update">
+      <!-- textbox to reference user ID -->
+      <input type="text" id="update_user_id" name="userID" placeholder="user id">
+      <br />
+      <!-- textbox for new user name -->
+      <input type="text" id="updated_user_name" name="userName" placeholder="name">
+      <br />
+      <!-- textbox for new user age -->
+      <input type="text" id="updated_user_age" name="userAge" placeholder="age">
+      <br />
+      <!-- button to confirm update -->
+      <input type="button" id="update_submit" value="Confirm" name="updateSubmit"></p>
+      <!-- status response message after update -->
+      <p id="update_status"></p>
     </div>
-
-    <div id="edit">
-        <h2> Edit User information </h2>
-
-        <div id="user_update">
-            <!-- textbox to reference user ID -->
-            <input type="text" id="update_user_id" name="userID" placeholder="user id">
-            <br/>
-            <!-- textbox for new user name -->
-            <input type="text" id="updated_user_name" name="userName" placeholder="name">
-            <br/>
-            <!-- textbox for new user age -->
-            <input type="text" id="updated_user_age" name="userAge" placeholder="age">
-            <br/>
-            <!-- button to confirm update -->
-            <input type="button" id="update_submit" value="Confirm" name="updateSubmit"></p>
-            <!-- status response message after update -->
-            <p id="update_status"></p>
-        </div>
-    </div>
+  </div>
 </body>
 
 </html>

@@ -8,7 +8,7 @@ function main() {
 
 function selectUsers() {
     let param_age = document.querySelector('select[name=ageRange]').value;
-    let param_dict = { param_age: param_age };
+    let param_dict = { "param_age": param_age };
 
     // Use fetch to send a POST request to the server
     fetch('/select', {

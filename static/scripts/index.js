@@ -13,7 +13,7 @@ function selectUsers() {
     // Use fetch to send a POST request to the server
     fetch('/select', {
         method: 'POST',
-        headers: { 'Content-Type': 'applications/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(param_dict)
     })
         .then(response => response.json())
@@ -63,7 +63,7 @@ function updateUsers() {
     // Use fetch to send a POST request to the server
     fetch('/update', {
         method: 'POST',
-        headers: { 'Content-Type': 'applications/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(param_dict)
     })
         .then(response => response.json())

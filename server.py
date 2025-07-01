@@ -15,7 +15,7 @@ def index():
 def selectEndpoint():
     dataDict = json.loads(request.data)
     queryResults = selectRequest(dataDict)
-    return queryResults
+    return jsonify(queryResults)
 
 
 @app.route('/update', methods=['POST'])  # Route to handle update request

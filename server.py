@@ -22,7 +22,6 @@ def selectEndpoint():
 def updateEndpoint():
     dataDict = json.loads(request.data)
     queryStatus = updateRequest(dataDict)
-    
     return jsonify({"update_status": queryStatus})
 
 

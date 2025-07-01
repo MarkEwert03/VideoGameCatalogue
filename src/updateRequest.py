@@ -16,7 +16,7 @@ def validate_age(age_str: str) -> str:
     - Non-negative
     - Within a realistic age range (0 to 130)
 
-    Parameters:
+    Args:
         age_str (str): The age input provided as a string.
 
     Returns:
@@ -50,7 +50,7 @@ def validate_age(age_str: str) -> str:
     if age <= 0:
         return "negative"
 
-    # Check for realistic age range (0 to 130 for human ages)
+    # Check for realistic age range (1 to 130 for human ages)
     if age > 130:
         return "large"
 
@@ -58,18 +58,23 @@ def validate_age(age_str: str) -> str:
     return "valid"
 
 
-def updateRequest(json_query: dict):
+def updateRequest(json_query: dict) -> str:
     """
-    executes query to update user with given information in json_query
+    Executes query to update user with passed information.
+    
+    Args:
+        json_query: The json dict object containing the information about the user.
+            An example of what it looks like is:
+            {
+                user_id: 123,
+                user_name: "Joe",
+                age: 25
+            }
 
-    returns "error" if there was an error in the query
+    Returns:
+        The result of `executeQuery()` which is "error" if there was an error in the query
     """
-    # json_query looks like
-    # {
-    #     user_id: 123,
-    #     user_name: "Joe",
-    #     age: 25
-    # }
+
     ref_id = json_query["user_id"]
 
     updated_name = json_query["user_name"]

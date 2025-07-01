@@ -33,6 +33,10 @@ def selectRequest(json_query: dict) -> list[dict]:
         upper_age = int(param_age)
         lower_age = upper_age - 9
         whereClause = f" WHERE {lower_age} <= age AND age <= {upper_age}"
+    elif param_age == "all":
+        pass # Just execute SELECT * FROM User
+    else:
+        raise TypeError(f"Error: param_age is {param_age}")
 
     sqlQuery += whereClause
 

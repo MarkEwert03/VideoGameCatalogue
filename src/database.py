@@ -8,7 +8,14 @@ DB_PATH = 'vgcat.db'
 
 def getTuplesFromDataBase(sql_query: str) -> list[dict]:
     """
-    Returns a list of dictionaries with all the rows from the sql query
+    Executes SQL query to return the result of the query.
+    
+    Args:
+        sql_query: A string containing the text of the SQL query to execute.
+            e.x. `'SELECT * FROM Table where val < 10'`
+        
+    Returns:
+        A list representing the result of the query (rows of the database)
     """
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -25,9 +32,14 @@ def getTuplesFromDataBase(sql_query: str) -> list[dict]:
 
 def executeQuery(sql_query: str) -> str:
     """
-    excutes the sql query to the local database file
-
-    returns "success" if succesful otherwise returns "error"
+    Excutes the SQL query to the local database file.
+    
+    Args:
+        sql_query: A string containing the text of the SQL query to execute.
+        
+    Returns:
+        message: A message indicating the status of the query. One of:
+        {'success', 'error'}
     """
     try:
         conn = sqlite3.connect(DB_PATH)

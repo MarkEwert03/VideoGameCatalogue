@@ -3,7 +3,7 @@ from src.database import executeQuery
 
 CURR_PATH = os.path.dirname(os.path.abspath(__file__))
 os.chdir(os.path.join(CURR_PATH, ".."))
-DB_PATH = 'vgcat.db'
+DB_PATH = "vgcat.db"
 
 
 def validate_age(age_str: str) -> str:
@@ -17,10 +17,11 @@ def validate_age(age_str: str) -> str:
     - Within a realistic age range (0 to 130)
 
     Args:
-        age_str (str): The age input provided as a string.
+        age_str: The age input provided as a string.
 
     Returns:
-        out (str): A message in ["valid", "empty", "non-integer", "negative", "large"]
+        out: A message in:
+            {'valid', 'empty', 'non-integer', 'negative', 'large'}
 
     Examples:
     >>> validate_age("25")
@@ -61,7 +62,7 @@ def validate_age(age_str: str) -> str:
 def updateRequest(json_query: dict) -> str:
     """
     Executes query to update user with passed information.
-    
+
     Args:
         json_query: The json dict object containing the information about the user.
             An example of what it looks like is:
@@ -72,7 +73,7 @@ def updateRequest(json_query: dict) -> str:
             }
 
     Returns:
-        The result of `executeQuery()` which is "error" if there was an error in the query
+        The result of `executeQuery()` which is 'error' if there was an error in the query
     """
 
     ref_id = json_query["user_id"]

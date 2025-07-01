@@ -10,15 +10,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-
-@app.route('/select', methods=['POST'])  # Route to handle select request
+@app.route('/select', methods=['GET'])
 def selectEndpoint():
-    dataDict = json.loads(request.data)
+    param_age = request.args.get('param_age', default='all')
+    dataDict = {'param_age': param_age}
     queryResults = selectRequest(dataDict)
     return jsonify(queryResults)
 
 
-@app.route('/update', methods=['POST'])  # Route to handle update request
+@app.route('/update', methods=['POST'])
 def updateEndpoint():
     dataDict = json.loads(request.data)
     queryStatus = updateRequest(dataDict)

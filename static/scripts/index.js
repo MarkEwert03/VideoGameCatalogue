@@ -1,24 +1,33 @@
+document.addEventListener('DOMContentLoaded', () => main());
+
 function main() {
     // event listeners
-    document.getElementById('select_submit').addEventListener('click', selectUsers);
+    document.getElementById('select_submit').addEventListener('click', handleSelectUsers);
     document.getElementById('select_clear').addEventListener('click', clearUsers);
-    document.getElementById('update_submit').addEventListener('click', updateUsers);
-
+    document.getElementById('update_submit').addEventListener('click', handleUpdateUsers);
 }
 
-function selectUsers() {
-    let param_age = document.querySelector('select[name=ageRange]').value;
-    let param_dict = { "param_age": param_age };
+// Fetch and display users (uses GET with query param)
+const handleSelectUsers = () => {
+    const selectBtn = document.getElementById('select_submit');
+    selectBtn.disabled = true;
 
-    // Use fetch to send a POST request to the server
-    fetch('/select', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(param_dict)
-    })
-        .then(response => response.json())
+    const param_age = document.querySelector('select[name=ageRange]').value;
+    const url = (
+        param_age === "all" ? '/select' : `/select?param_age=${encodeURIComponent(param_age)}`
+    );
+
+    fetch(url, { method: 'GET' })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+            return response.json();
+        })
         .then(data => populateTable(document.getElementById('user_table'), data))
-}
+        .catch(err => alert('Failed to fetch users: ' + err))
+        .finally(() => {
+            selectBtn.disabled = false;
+        });
+};
 
 // populate it with data, then show the table
 function populateTable(tableElem, data) {
@@ -54,7 +63,7 @@ function clearUsers() {
     tableElem.style.display = 'none'; // hide the table
 }
 
-function updateUsers() {
+function handleUpdateUsers() {
     let param_user_id = document.querySelector('input[id=update_user_id]').value;
     let param_user_name = document.querySelector('input[name=userName]').value;
     let param_user_age = document.querySelector('input[name=userAge]').value;
@@ -75,6 +84,10 @@ function updateUsers() {
                 case "success":
                     responseTextBox.innerHTML = `User ${param_user_id} now has been modified!`;
                     responseTextBox.style.color = "green";
+                    // After a successful update, clear the input fields
+                    document.getElementById('update_user_id').value = '';
+                    document.querySelector('input[name=userName]').value = '';
+                    document.querySelector('input[name=userAge]').value = '';
                     break;
                 case "empty":
                     responseTextBox.innerHTML = `Please input a non-empty field for the age.`;
@@ -103,5 +116,3 @@ function updateUsers() {
             }
         });
 }
-
-document.addEventListener('DOMContentLoaded', function () { main(); })

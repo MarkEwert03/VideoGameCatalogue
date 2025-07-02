@@ -46,12 +46,13 @@ const populateTable = (tableElem, data) => {
     tableElem.style.display = "block";
 };
 
-function clearUsers() {
-    let tableElem = document.getElementById('user_table');
-    let tbody = tableElem.querySelector('tbody');
-    tbody.innerHTML = ''; // clear any existing rows
-    tableElem.style.display = 'none'; // hide the table
-}
+// Clear the user table
+const clearUsers = () => {
+    const tableElem = document.getElementById('user_table');
+    const tbody = tableElem.querySelector('tbody');
+    tbody.innerHTML = '';
+    tableElem.style.display = 'none';
+};
 
 function handleUpdateUsers() {
     let param_user_id = document.querySelector('input[id=update_user_id]').value;

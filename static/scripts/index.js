@@ -4,7 +4,7 @@ function main() {
     // event listeners
     document.getElementById('select_submit').addEventListener('click', handleSelectUsers);
     document.getElementById('select_clear').addEventListener('click', clearUsers);
-    document.getElementById('update_submit').addEventListener('click', handleUpdateUsers);
+    document.getElementById('update_submit').addEventListener('click', handleUpdateUser);
 }
 
 // Fetch and display users (uses GET with query param)
@@ -54,56 +54,82 @@ const clearUsers = () => {
     tableElem.style.display = 'none';
 };
 
-function handleUpdateUsers() {
-    let param_user_id = document.querySelector('input[id=update_user_id]').value;
-    let param_user_name = document.querySelector('input[name=userName]').value;
-    let param_user_age = document.querySelector('input[name=userAge]').value;
-    let param_dict = { user_id: parseInt(param_user_id), user_name: param_user_name, age: param_user_age };
+// Handle user update (uses POST)
+const handleUpdateUser = () => {
+    const updateBtn = document.getElementById('update_submit');
+    updateBtn.disabled = true;
 
-    // Use fetch to send a POST request to the server
+    const param_user_id = document.querySelector('input[id=update_user_id]').value.trim();
+    const param_user_name = document.querySelector('input[name=userName]').value.trim();
+    const param_user_age = document.querySelector('input[name=userAge]').value.trim();
+    const param_dict = {
+        "user_id": parseInt(param_user_id),
+        "user_name": param_user_name,
+        "age": param_user_age
+    };
+
     fetch('/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(param_dict)
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+            return response.json();
+        })
         .then(data => {
-            let responseTextBox = document.getElementById("update_status");
-            // messages opbtained from updateRequest.py
-            let update_status_msg = data["update_status"];
-            switch (update_status_msg) {
-                case "success":
-                    responseTextBox.innerHTML = `User ${param_user_id} now has been modified!`;
-                    responseTextBox.style.color = "green";
-                    // After a successful update, clear the input fields
-                    document.getElementById('update_user_id').value = '';
-                    document.querySelector('input[name=userName]').value = '';
-                    document.querySelector('input[name=userAge]').value = '';
-                    break;
-                case "empty":
-                    responseTextBox.innerHTML = `Please input a non-empty field for the age.`;
-                    responseTextBox.style.color = "red";
-                    break;
-                case "non-integer":
-                    responseTextBox.innerHTML = `Please input an integer for the age.`;
-                    responseTextBox.style.color = "red";
-                    break;
-                case "negative":
-                    responseTextBox.innerHTML = `Please input a positive age.`;
-                    responseTextBox.style.color = "red";
-                    break;
-                case "large":
-                    responseTextBox.innerHTML = `Please input a realistic human age (below 130 years)`;
-                    responseTextBox.style.color = "red";
-                    break;
-                case "error":
-                    responseTextBox.innerHTML = `User ${param_user_id} does not exist.`;
-                    responseTextBox.style.color = "red";
-                    break;
-                default:
-                    responseTextBox.innerHTML = `! UNHANDELED ERROR !`;
-                    responseTextBox.style.color = "red";
-                    break;
+            showUpdateStatus(data["update_status"], param_user_id);
+            if (data["update_status"] === "success") {
+                clearUpdateFields();
             }
+        })
+        .catch(err => {
+            showUpdateStatus("error", param_user_id);
+            alert('Failed to update user: ' + err);
+        })
+        .finally(() => {
+            updateBtn.disabled = false;
         });
-}
+};
+
+// Show update status to user
+const showUpdateStatus = (status, userId) => {
+    const responseTextBox = document.getElementById("update_status");
+    switch (status) {
+        case "success":
+            responseTextBox.textContent = `User ${userId} has been modified!`;
+            responseTextBox.style.color = "green";
+            break;
+        case "error":
+            responseTextBox.textContent = `User ${userId} does not exist.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "empty":
+            responseTextBox.textContent = `Please input a non-empty field for the age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "non-integer":
+            responseTextBox.textContent = `Please input an integer for the age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "negative":
+            responseTextBox.textContent = `Please input a positive age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "large":
+            responseTextBox.textContent = `Please input a realistic human age (below 130 years)`;
+            responseTextBox.style.color = "red";
+            break;
+        default:
+            responseTextBox.textContent = `! UNHANDLED ERROR !`;
+            responseTextBox.style.color = "red";
+            break;
+    }
+};
+
+// Clear the update form inputs
+const clearUpdateFields = () => {
+    document.getElementById('update_user_id').value = '';
+    document.querySelector('input[name=userName]').value = '';
+    document.querySelector('input[name=userAge]').value = '';
+};

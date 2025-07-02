@@ -29,32 +29,22 @@ const handleSelectUsers = () => {
         });
 };
 
-// populate it with data, then show the table
-function populateTable(tableElem, data) {
-    // Create ordered list of thead Ids
-    let theadIds = Array.from(tableElem.querySelectorAll('th')).map(th => th.id);
-
-    // Populate the table
-    let tbody = tableElem.querySelector('tbody');
-    tbody.innerHTML = ''; // clear any existing rows
+// Render user table
+const populateTable = (tableElem, data) => {
+    const theadIds = Array.from(tableElem.querySelectorAll('th')).map(th => th.id);
+    const tbody = tableElem.querySelector('tbody');
+    tbody.innerHTML = '';
     data.forEach(rowData => {
-        // Create new row
-        let newRow = document.createElement("tr");
-
-        // Fill the row with values.
+        const newRow = document.createElement("tr");
         theadIds.forEach(thID => {
-            let newCell = document.createElement("td");
-            newCell.textContent = rowData[thID];
+            const newCell = document.createElement("td");
+            newCell.textContent = rowData[thID] ?? '';
             newRow.appendChild(newCell);
         });
-
-        // Add row to table
         tbody.appendChild(newRow);
     });
-
-    // Show table
     tableElem.style.display = "block";
-}
+};
 
 function clearUsers() {
     let tableElem = document.getElementById('user_table');

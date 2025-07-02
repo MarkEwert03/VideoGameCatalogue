@@ -73,7 +73,8 @@ def updateRequest(json_query: dict) -> str:
             }
 
     Returns:
-        The result of `executeQuery()` which is 'error' if there was an error in the query
+        The result of `validate_age()` or `executeQuery()`. So one of:
+        {'success', 'error', 'valid', 'empty', 'non-integer', 'negative', 'large'}
     """
 
     ref_id = json_query["user_id"]

@@ -3,17 +3,17 @@ import sqlite3
 
 CURR_PATH = os.path.dirname(os.path.abspath(__file__))
 os.chdir(os.path.join(CURR_PATH, ".."))
-DB_PATH = 'vgcat.db'
+DB_PATH = "vgcat.db"
 
 
 def getTuplesFromDataBase(sql_query: str) -> list[dict]:
     """
     Executes SQL query to return the result of the query.
-    
+
     Args:
         sql_query: A string containing the text of the SQL query to execute.
             e.x. `'SELECT * FROM Table where val < 10'`
-        
+
     Returns:
         A list representing the result of the query (rows of the database)
     """
@@ -33,10 +33,10 @@ def getTuplesFromDataBase(sql_query: str) -> list[dict]:
 def executeQuery(sql_query: str) -> str:
     """
     Excutes the SQL query to the local database file.
-    
+
     Args:
         sql_query: A string containing the text of the SQL query to execute.
-        
+
     Returns:
         message: A message indicating the status of the query. One of:
         {'success', 'error'}

@@ -16,28 +16,31 @@
     <h2> View Users </h2>
 
     <div id="user_select">
-      <!-- dropdown for age ranges -->
-      <select name="ageRange">
-        <option value="all"> All ages </option>
-        <option value="9"> 0-9 years old </option>
-        <option value="19"> 10-19 years old </option>
-        <option value="29"> 20-29 years old </option>
-        <option value="39"> 30-39 years old </option>
-        <option value="49"> 40-49 years old </option>
-        <option value="59"> 50-59 years old </option>
-        <option value="69"> 60-69 years old </option>
-        <option value="79"> 70-79 years old </option>
-        <option value="89"> 80-89 years old </option>
-        <option value="99"> 90-99 years old </option>
-        <option value="100+"> 100+ years old </option>
-      </select>
+      <div class="form-group">
+        <label for="ageRange">Filter by Age Range:</label>
+        <!-- dropdown for age ranges -->
+        <select name="ageRange" id="ageRange">
+          <option value="all"> All ages </option>
+          <option value="9"> 0-9 years old </option>
+          <option value="19"> 10-19 years old </option>
+          <option value="29"> 20-29 years old </option>
+          <option value="39"> 30-39 years old </option>
+          <option value="49"> 40-49 years old </option>
+          <option value="59"> 50-59 years old </option>
+          <option value="69"> 60-69 years old </option>
+          <option value="79"> 70-79 years old </option>
+          <option value="89"> 80-89 years old </option>
+          <option value="99"> 90-99 years old </option>
+          <option value="100+"> 100+ years old </option>
+        </select>
+      </div>
 
-      <br />
-
-      <!-- button to show table with current parameters -->
-      <input type="button" id="select_submit" value="View Users" name="selectSubmit">
-      <!-- button to clear table -->
-      <input type="button" id="select_clear" value="Clear Table" name="selectClear">
+      <div class="button-group">
+        <!-- button to show table with current parameters -->
+        <input type="button" id="select_submit" value="View Users" name="selectSubmit">
+        <!-- button to clear table -->
+        <input type="button" id="select_clear" value="Clear Table" name="selectClear">
+      </div>
       <!-- table showing user information -->
       <table id="user_table" style="display:none">
         <thead>
@@ -56,17 +59,25 @@
     <h2> Edit User information </h2>
 
     <div id="user_update">
-      <!-- textbox to reference user ID -->
-      <input type="text" id="update_user_id" name="userID" placeholder="user id">
-      <br />
-      <!-- textbox for new user name -->
-      <input type="text" id="updated_user_name" name="userName" placeholder="name">
-      <br />
-      <!-- textbox for new user age -->
-      <input type="text" id="updated_user_age" name="userAge" placeholder="age">
-      <br />
-      <!-- button to confirm update -->
-      <input type="button" id="update_submit" value="Confirm" name="updateSubmit"></p>
+      <div class="form-group">
+        <label for="update_user_id">User ID:</label>
+        <!-- textbox to reference user ID -->
+        <input type="text" id="update_user_id" name="userID" placeholder="Enter user ID">
+      </div>
+      <div class="form-group">
+        <label for="updated_user_name">Name:</label>
+        <!-- textbox for new user name -->
+        <input type="text" id="updated_user_name" name="userName" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        <label for="updated_user_age">Age:</label>
+        <!-- textbox for new user age -->
+        <input type="text" id="updated_user_age" name="userAge" placeholder="Enter age">
+      </div>
+      <div class="button-group">
+        <!-- button to confirm update -->
+        <input type="button" id="update_submit" value="Update User" name="updateSubmit">
+      </div>
       <!-- status response message after update -->
       <p id="update_status"></p>
     </div>

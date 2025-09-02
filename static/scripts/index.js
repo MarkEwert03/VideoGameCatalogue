@@ -5,6 +5,8 @@ function main() {
     document.getElementById('select_submit').addEventListener('click', handleSelectCustomers);
     document.getElementById('select_clear').addEventListener('click', clearCustomers);
     document.getElementById('update_submit').addEventListener('click', handleUpdateCustomer);
+    document.getElementById('insert_submit').addEventListener('click', handleInsertCustomer);
+    document.getElementById('delete_submit').addEventListener('click', handleDeleteCustomer);
 }
 
 // Fetch and display customers (uses GET with query param)
@@ -132,4 +134,139 @@ const clearUpdateFields = () => {
     document.getElementById('update_customer_id').value = '';
     document.querySelector('input[name=customerName]').value = '';
     document.querySelector('input[name=customerAge]').value = '';
+};
+
+// Handle customer insert (uses POST)
+const handleInsertCustomer = () => {
+    const insertBtn = document.getElementById('insert_submit');
+    insertBtn.disabled = true;
+
+    const param_customer_name = document.querySelector('input[name=insertCustomerName]').value.trim();
+    const param_customer_age = document.querySelector('input[name=insertCustomerAge]').value.trim();
+    const param_dict = {
+        "customer_name": param_customer_name,
+        "age": param_customer_age
+    };
+
+    fetch('/insert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(param_dict)
+    })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            showInsertStatus(data["insert_status"], param_customer_name);
+            if (data["insert_status"] === "success") {
+                clearInsertFields();
+            }
+        })
+        .catch(err => {
+            showInsertStatus("error", param_customer_name);
+            alert('Failed to insert customer: ' + err);
+        })
+        .finally(() => {
+            insertBtn.disabled = false;
+        });
+};
+
+// Show insert status to customer
+const showInsertStatus = (status, customerName) => {
+    const responseTextBox = document.getElementById("insert_status");
+    switch (status) {
+        case "success":
+            responseTextBox.textContent = `Customer ${customerName} has been added successfully!`;
+            responseTextBox.style.color = "green";
+            break;
+        case "error":
+            responseTextBox.textContent = `Failed to add customer ${customerName}.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "empty":
+            responseTextBox.textContent = `Please input a non-empty field for the age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "non-integer":
+            responseTextBox.textContent = `Please input an integer for the age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "negative":
+            responseTextBox.textContent = `Please input a positive age.`;
+            responseTextBox.style.color = "red";
+            break;
+        case "large":
+            responseTextBox.textContent = `Please input a realistic human age (below 130 years)`;
+            responseTextBox.style.color = "red";
+            break;
+        default:
+            responseTextBox.textContent = `! UNHANDLED ERROR !`;
+            responseTextBox.style.color = "red";
+            break;
+    }
+};
+
+// Clear the insert form inputs
+const clearInsertFields = () => {
+    document.querySelector('input[name=insertCustomerName]').value = '';
+    document.querySelector('input[name=insertCustomerAge]').value = '';
+};
+
+// Handle customer delete (uses POST)
+const handleDeleteCustomer = () => {
+    const deleteBtn = document.getElementById('delete_submit');
+    deleteBtn.disabled = true;
+
+    const param_customer_id = document.querySelector('input[name=deleteCustomerID]').value.trim();
+    const param_dict = {
+        "customer_id": parseInt(param_customer_id)
+    };
+
+    fetch('/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(param_dict)
+    })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            showDeleteStatus(data["delete_status"], param_customer_id);
+            if (data["delete_status"] === "success") {
+                clearDeleteFields();
+            }
+        })
+        .catch(err => {
+            showDeleteStatus("error", param_customer_id);
+            alert('Failed to delete customer: ' + err);
+        })
+        .finally(() => {
+            deleteBtn.disabled = false;
+        });
+};
+
+// Show delete status to customer
+const showDeleteStatus = (status, customerId) => {
+    const responseTextBox = document.getElementById("delete_status");
+    switch (status) {
+        case "success":
+            responseTextBox.textContent = `Customer ${customerId} has been removed successfully!`;
+            responseTextBox.style.color = "green";
+            break;
+        case "error":
+            responseTextBox.textContent = `Customer ${customerId} does not exist or could not be deleted.`;
+            responseTextBox.style.color = "red";
+            break;
+        default:
+            responseTextBox.textContent = `! UNHANDLED ERROR !`;
+            responseTextBox.style.color = "red";
+            break;
+    }
+};
+
+// Clear the delete form inputs
+const clearDeleteFields = () => {
+    document.querySelector('input[name=deleteCustomerID]').value = '';
 };

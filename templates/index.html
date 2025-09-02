@@ -82,6 +82,47 @@
       <p id="update_status"></p>
     </div>
   </div>
+
+  <div id="add">
+    <h2> Add New Customer </h2>
+
+    <div id="customer_insert">
+      <div class="form-group">
+        <label for="insert_customer_name">Name:</label>
+        <!-- textbox for customer name -->
+        <input type="text" id="insert_customer_name" name="insertCustomerName" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        <label for="insert_customer_age">Age:</label>
+        <!-- textbox for customer age -->
+        <input type="text" id="insert_customer_age" name="insertCustomerAge" placeholder="Enter age">
+      </div>
+      <div class="button-group">
+        <!-- button to confirm insert -->
+        <input type="button" id="insert_submit" value="Add Customer" name="insertSubmit">
+      </div>
+      <!-- status response message after insert -->
+      <p id="insert_status"></p>
+    </div>
+  </div>
+
+  <div id="remove">
+    <h2> Remove Customer </h2>
+
+    <div id="customer_delete">
+      <div class="form-group">
+        <label for="delete_customer_id">Customer ID:</label>
+        <!-- textbox to reference customer ID -->
+        <input type="text" id="delete_customer_id" name="deleteCustomerID" placeholder="Enter customer ID">
+      </div>
+      <div class="button-group">
+        <!-- button to confirm delete -->
+        <input type="button" id="delete_submit" value="Remove Customer" name="deleteSubmit">
+      </div>
+      <!-- status response message after delete -->
+      <p id="delete_status"></p>
+    </div>
+  </div>
 </body>
 
 </html>

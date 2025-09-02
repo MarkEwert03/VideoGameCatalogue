@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import json
 from src.selectRequest import selectRequest
 from src.updateRequest import updateRequest
+from src.insertRequest import insertRequest
+from src.deleteRequest import deleteRequest
 
 app = Flask(__name__)
 
@@ -24,6 +26,20 @@ def updateEndpoint():
     dataDict = json.loads(request.data)
     queryStatus = updateRequest(dataDict)
     return jsonify({"update_status": queryStatus})
+
+
+@app.route("/insert", methods=["POST"])
+def insertEndpoint():
+    dataDict = json.loads(request.data)
+    queryStatus = insertRequest(dataDict)
+    return jsonify({"insert_status": queryStatus})
+
+
+@app.route("/delete", methods=["POST"])
+def deleteEndpoint():
+    dataDict = json.loads(request.data)
+    queryStatus = deleteRequest(dataDict)
+    return jsonify({"delete_status": queryStatus})
 
 
 if __name__ == "__main__":

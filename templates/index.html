@@ -13,9 +13,9 @@
   </div>
 
   <div id="view">
-    <h2> View Users </h2>
+    <h2> View Customers </h2>
 
-    <div id="user_select">
+    <div id="customer_select">
       <div class="form-group">
         <label for="ageRange">Filter by Age Range:</label>
         <!-- dropdown for age ranges -->
@@ -37,15 +37,15 @@
 
       <div class="button-group">
         <!-- button to show table with current parameters -->
-        <input type="button" id="select_submit" value="View Users" name="selectSubmit">
+        <input type="button" id="select_submit" value="View Customers" name="selectSubmit">
         <!-- button to clear table -->
         <input type="button" id="select_clear" value="Clear Table" name="selectClear">
       </div>
-      <!-- table showing user information -->
-      <table id="user_table" style="display:none">
+      <!-- table showing customer information -->
+      <table id="customer_table" style="display:none">
         <thead>
-          <th id="user_id">User ID</th>
-          <th id="user_name">Name</th>
+          <th id="customer_id">Customer ID</th>
+          <th id="customer_name">Name</th>
           <th id="age">Age (years)</th>
           <th id="created_at">Date of Account Creation</th>
         </thead>
@@ -56,27 +56,27 @@
   </div>
 
   <div id="edit">
-    <h2> Edit User information </h2>
+    <h2> Edit Customer information </h2>
 
-    <div id="user_update">
+    <div id="customer_update">
       <div class="form-group">
-        <label for="update_user_id">User ID:</label>
-        <!-- textbox to reference user ID -->
-        <input type="text" id="update_user_id" name="userID" placeholder="Enter user ID">
+        <label for="update_customer_id">Customer ID:</label>
+        <!-- textbox to reference customer ID -->
+        <input type="text" id="update_customer_id" name="customerID" placeholder="Enter customer ID">
       </div>
       <div class="form-group">
-        <label for="updated_user_name">Name:</label>
-        <!-- textbox for new user name -->
-        <input type="text" id="updated_user_name" name="userName" placeholder="Enter name">
+        <label for="updated_customer_name">Name:</label>
+        <!-- textbox for new customer name -->
+        <input type="text" id="updated_customer_name" name="customerName" placeholder="Enter name">
       </div>
       <div class="form-group">
-        <label for="updated_user_age">Age:</label>
-        <!-- textbox for new user age -->
-        <input type="text" id="updated_user_age" name="userAge" placeholder="Enter age">
+        <label for="updated_customer_age">Age:</label>
+        <!-- textbox for new customer age -->
+        <input type="text" id="updated_customer_age" name="customerAge" placeholder="Enter age">
       </div>
       <div class="button-group">
         <!-- button to confirm update -->
-        <input type="button" id="update_submit" value="Update User" name="updateSubmit">
+        <input type="button" id="update_submit" value="Update Customer" name="updateSubmit">
       </div>
       <!-- status response message after update -->
       <p id="update_status"></p>

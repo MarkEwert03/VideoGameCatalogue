@@ -61,14 +61,14 @@ def validate_age(age_str: str) -> str:
 
 def updateRequest(json_query: dict) -> str:
     """
-    Executes query to update user with passed information.
+    Executes query to update customer with passed information.
 
     Args:
-        json_query: The json dict object containing the information about the user.
+        json_query: The json dict object containing the information about the customer.
             An example of what it looks like is:
             {
-                user_id: 123,
-                user_name: "Joe",
+                customer_id: 123,
+                customer_name: "Joe",
                 age: 25
             }
 
@@ -77,14 +77,14 @@ def updateRequest(json_query: dict) -> str:
         {'success', 'error', 'valid', 'empty', 'non-integer', 'negative', 'large'}
     """
 
-    ref_id = json_query["user_id"]
+    ref_id = json_query["customer_id"]
 
-    updated_name = json_query["user_name"]
+    updated_name = json_query["customer_name"]
 
     updated_age = json_query["age"]
     age_check = validate_age(updated_age)
     if age_check != "valid":
         return age_check
 
-    sql_query = f'UPDATE User SET user_name = "{updated_name}", age = {updated_age} WHERE user_id = {ref_id}'
+    sql_query = f'UPDATE Customer SET customer_name = "{updated_name}", age = {updated_age} WHERE customer_id = {ref_id}'
     return executeQuery(sql_query)

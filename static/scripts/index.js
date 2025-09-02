@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => main());
 
 function main() {
     // event listeners
-    document.getElementById('select_submit').addEventListener('click', handleSelectUsers);
-    document.getElementById('select_clear').addEventListener('click', clearUsers);
-    document.getElementById('update_submit').addEventListener('click', handleUpdateUser);
+    document.getElementById('select_submit').addEventListener('click', handleSelectCustomers);
+    document.getElementById('select_clear').addEventListener('click', clearCustomers);
+    document.getElementById('update_submit').addEventListener('click', handleUpdateCustomer);
 }
 
-// Fetch and display users (uses GET with query param)
-const handleSelectUsers = () => {
+// Fetch and display customers (uses GET with query param)
+const handleSelectCustomers = () => {
     const selectBtn = document.getElementById('select_submit');
     selectBtn.disabled = true;
 
@@ -22,14 +22,14 @@ const handleSelectUsers = () => {
             if (!response.ok) throw new Error(`HTTP error ${response.status}`);
             return response.json();
         })
-        .then(data => populateTable(document.getElementById('user_table'), data))
-        .catch(err => alert('Failed to fetch users: ' + err))
+        .then(data => populateTable(document.getElementById('customer_table'), data))
+        .catch(err => alert('Failed to fetch customers: ' + err))
         .finally(() => {
             selectBtn.disabled = false;
         });
 };
 
-// Render user table
+// Render customer table
 const populateTable = (tableElem, data) => {
     const theadIds = Array.from(tableElem.querySelectorAll('th')).map(th => th.id);
     const tbody = tableElem.querySelector('tbody');
@@ -46,26 +46,26 @@ const populateTable = (tableElem, data) => {
     tableElem.style.display = "block";
 };
 
-// Clear the user table
-const clearUsers = () => {
-    const tableElem = document.getElementById('user_table');
+// Clear the customer table
+const clearCustomers = () => {
+    const tableElem = document.getElementById('customer_table');
     const tbody = tableElem.querySelector('tbody');
     tbody.innerHTML = '';
     tableElem.style.display = 'none';
 };
 
-// Handle user update (uses POST)
-const handleUpdateUser = () => {
+// Handle customer update (uses POST)
+const handleUpdateCustomer = () => {
     const updateBtn = document.getElementById('update_submit');
     updateBtn.disabled = true;
 
-    const param_user_id = document.querySelector('input[id=update_user_id]').value.trim();
-    const param_user_name = document.querySelector('input[name=userName]').value.trim();
-    const param_user_age = document.querySelector('input[name=userAge]').value.trim();
+    const param_customer_id = document.querySelector('input[id=update_customer_id]').value.trim();
+    const param_customer_name = document.querySelector('input[name=customerName]').value.trim();
+    const param_customer_age = document.querySelector('input[name=customerAge]').value.trim();
     const param_dict = {
-        "user_id": parseInt(param_user_id),
-        "user_name": param_user_name,
-        "age": param_user_age
+        "customer_id": parseInt(param_customer_id),
+        "customer_name": param_customer_name,
+        "age": param_customer_age
     };
 
     fetch('/update', {
@@ -78,30 +78,30 @@ const handleUpdateUser = () => {
             return response.json();
         })
         .then(data => {
-            showUpdateStatus(data["update_status"], param_user_id);
+            showUpdateStatus(data["update_status"], param_customer_id);
             if (data["update_status"] === "success") {
                 clearUpdateFields();
             }
         })
         .catch(err => {
-            showUpdateStatus("error", param_user_id);
-            alert('Failed to update user: ' + err);
+            showUpdateStatus("error", param_customer_id);
+            alert('Failed to update customer: ' + err);
         })
         .finally(() => {
             updateBtn.disabled = false;
         });
 };
 
-// Show update status to user
-const showUpdateStatus = (status, userId) => {
+// Show update status to customer
+const showUpdateStatus = (status, customerId) => {
     const responseTextBox = document.getElementById("update_status");
     switch (status) {
         case "success":
-            responseTextBox.textContent = `User ${userId} has been modified!`;
+            responseTextBox.textContent = `Customer ${customerId} has been modified!`;
             responseTextBox.style.color = "green";
             break;
         case "error":
-            responseTextBox.textContent = `User ${userId} does not exist.`;
+            responseTextBox.textContent = `Customer ${customerId} does not exist.`;
             responseTextBox.style.color = "red";
             break;
         case "empty":
@@ -129,7 +129,7 @@ const showUpdateStatus = (status, userId) => {
 
 // Clear the update form inputs
 const clearUpdateFields = () => {
-    document.getElementById('update_user_id').value = '';
-    document.querySelector('input[name=userName]').value = '';
-    document.querySelector('input[name=userAge]').value = '';
+    document.getElementById('update_customer_id').value = '';
+    document.querySelector('input[name=customerName]').value = '';
+    document.querySelector('input[name=customerAge]').value = '';
 };
